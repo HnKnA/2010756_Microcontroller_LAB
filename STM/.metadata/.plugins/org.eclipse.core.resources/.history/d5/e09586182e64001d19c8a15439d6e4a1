@@ -1,0 +1,26 @@
+/*
+ * fsm.c
+ *
+ *  Created on: Nov 14, 2022
+ *      Author: A.Tuan
+ */
+
+#include "fsm.h"
+
+void fsm_run(){
+	switch(status){
+	case 1:
+		mode1();
+		break;
+	case 2:
+		mode2();
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	default:
+		break;
+	}
+
+}

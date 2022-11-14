@@ -1,0 +1,16 @@
+/*
+ * mode2.h
+ *
+ *  Created on: Nov 1, 2022
+ *      Author: A.Tuan
+ */
+
+#ifndef INC_MODE2_H_
+#define INC_MODE2_H_
+
+void display7SEG(int num, char axis);
+int default_time = 7;
+
+void mode2();
+
+#endif /* INC_MODE2_H_ */

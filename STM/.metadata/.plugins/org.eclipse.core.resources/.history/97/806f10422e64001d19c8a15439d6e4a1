@@ -1,0 +1,15 @@
+/*
+ * global.c
+ *
+ *  Created on: Nov 1, 2022
+ *      Author: A.Tuan
+ */
+
+#include "global.h"
+
+
+int green_time_global = 4;
+int yellow_time_global = 2;
+int red_time_global = 6;
+
+int status = 2;

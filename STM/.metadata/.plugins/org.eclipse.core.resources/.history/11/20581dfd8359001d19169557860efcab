@@ -1,0 +1,15 @@
+/*
+ * mode2.c
+ *
+ *  Created on: Nov 1, 2022
+ *      Author: A.Tuan
+ */
+
+#include "mode2.h"
+#include "software_timer.h"
+#include "main.h"
+
+void mode2(){
+HAL_GPIO_TogglePin(LED_RED_X_GPIO_Port, LED_RED_X_Pin);
+HAL_GPIO_TogglePin(LED_RED_Y_GPIO_Port, LED_RED_Y_Pin);
+}

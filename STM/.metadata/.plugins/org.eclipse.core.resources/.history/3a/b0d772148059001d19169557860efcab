@@ -1,0 +1,17 @@
+/*
+ * mode1.h
+ *
+ *  Created on: Nov 1, 2022
+ *      Author: A.Tuan
+ */
+
+#ifndef INC_MODE1_H_
+#define INC_MODE1_H_
+
+void display7SEG(int num, char axis);
+char led_status[2] = {'R', 'R'};
+int green_time[2] = {4, 4};
+int yellow_time[2] = {2, 2};
+
+
+#endif /* INC_MODE1_H_ */

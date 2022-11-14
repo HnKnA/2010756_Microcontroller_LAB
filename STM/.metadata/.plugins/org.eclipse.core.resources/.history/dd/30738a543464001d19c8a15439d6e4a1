@@ -1,0 +1,42 @@
+/*
+ * fsm.c
+ *
+ *  Created on: Nov 14, 2022
+ *      Author: A.Tuan
+ */
+
+#include "fsm.h"
+
+int a = 50;
+
+void fsm_run(){
+	switch(status){
+	case 1:
+		mode1();
+		if(button1_flag == 1){
+			status = 2;
+			button1_flag = 0;
+		}
+		break;
+	case 2:
+		mode2();
+		a--;
+		if(a == 0){
+		HAL_GPIO_TogglePin(LED_RED_X_GPIO_Port, LED_RED_X_Pin);
+		HAL_GPIO_TogglePin(LED_RED_Y_GPIO_Port, LED_RED_Y_Pin);
+		a=50;
+		}
+		if(button1_flag == 1){
+			status = 3;
+			button1_flag = 0;
+		}
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	default:
+		break;
+	}
+
+}

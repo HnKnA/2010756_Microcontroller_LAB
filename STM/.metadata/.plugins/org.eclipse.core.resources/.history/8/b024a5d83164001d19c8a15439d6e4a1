@@ -1,0 +1,36 @@
+/*
+ * fsm.c
+ *
+ *  Created on: Nov 14, 2022
+ *      Author: A.Tuan
+ */
+
+#include "fsm.h"
+
+void fsm_run(){
+	switch(status){
+	case 1:
+		mode1();
+		if(button1_flag == 1){
+			status = 2;
+			button1_flag = 0;
+			  HAL_GPIO_WritePin(LED_RED_X_GPIO_Port, LED_RED_X_Pin, RESET);
+			  HAL_GPIO_WritePin(LED_RED_Y_GPIO_Port, LED_RED_Y_Pin, RESET);
+		}
+		break;
+	case 2:
+		mode2();
+		if(button1_flag == 1){
+			status = 3;
+			button1_flag = 0;
+		}
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	default:
+		break;
+	}
+
+}

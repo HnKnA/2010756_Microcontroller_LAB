@@ -1,0 +1,66 @@
+/*
+ * mode2.c
+ *
+ *  Created on: Nov 1, 2022
+ *      Author: A.Tuan
+ */
+#include <math.h>
+#include "mode2.h"
+#include "software_timer.h"
+#include "main.h"
+#include "mode1.h"
+#include "global.h"
+#include "button.h"
+
+double default_time = 7;
+
+int on_changed = 0;
+
+void mode2(){
+	if(default_time >= 0){
+		if(on_changed){
+			display7SEG(ceil(default_time), 'x');
+			display7SEG(ceil(default_time), 'y');
+		}
+		else{
+		display7SEG(ceil(default_time), 'x');
+		display7SEG(ceil(default_time), 'y');
+		HAL_GPIO_TogglePin(LED_RED_X_GPIO_Port, LED_RED_X_Pin);
+		HAL_GPIO_TogglePin(LED_RED_Y_GPIO_Port, LED_RED_Y_Pin);
+		HAL_GPIO_WritePin(LED_YELLOW_X_GPIO_Port, LED_YELLOW_X_Pin, RESET);
+		HAL_GPIO_WritePin(LED_YELLOW_Y_GPIO_Port, LED_YELLOW_Y_Pin, RESET);
+		HAL_GPIO_WritePin(LED_GREEN_X_GPIO_Port, LED_GREEN_X_Pin, RESET);
+		HAL_GPIO_WritePin(LED_GREEN_Y_GPIO_Port, LED_GREEN_Y_Pin, RESET);
+		default_time = default_time - 0.5;
+		}
+	}
+	else if(default_time < 0){
+		display7SEG(0, 'x');
+		display7SEG(0, 'y');
+		HAL_GPIO_WritePin(LED_YELLOW_X_GPIO_Port, LED_YELLOW_X_Pin, RESET);
+		HAL_GPIO_WritePin(LED_YELLOW_Y_GPIO_Port, LED_YELLOW_Y_Pin, RESET);
+		HAL_GPIO_WritePin(LED_GREEN_X_GPIO_Port, LED_GREEN_X_Pin, RESET);
+		HAL_GPIO_WritePin(LED_GREEN_Y_GPIO_Port, LED_GREEN_Y_Pin, RESET);
+		HAL_GPIO_WritePin(LED_RED_X_GPIO_Port, LED_RED_X_Pin, RESET);
+		HAL_GPIO_WritePin(LED_RED_Y_GPIO_Port, LED_RED_Y_Pin, RESET);
+	}
+	if(button3_flag == 1){
+		if(!on_changed){
+			default_time = 0;
+		}
+		else {
+			red_time_global[0] = default_time;
+			red_time_global[0] = default_time;
+		}
+		on_changed = !on_changed;
+		button3_flag = 0;
+	}
+	if(button2_flag == 1){
+		if(on_changed){
+		button2_flag = 0;
+		red_time_global[0]++;
+		red_time_global[1]++;
+		default_time = red_time_global[0];
+		}
+	}
+}
